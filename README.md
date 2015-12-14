@@ -183,22 +183,21 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       7|`sudo nano /etc/postgresql/9.3/main/pg_hba.conf`| Replace `peer` to `md5` for local not, admin to allow connections with passwords 
       8|`sudo service postgresql restart`| Restart database
       9| Copy project files to a virtual server
-           1. Code is stored in a remote repository like GitHub
-                 Install git, clone and set up project if the code is stored in a remote repository like GitHub
+      
+         1. Code is stored in a remote repository like GitHub
+               * Install git, clone and set up project if the code is stored in a remote repository like GitHub
                
                1|`sudo apt-get install git`| Install github
-               ---|-------------------------|----------------------------------------
+         -------|-----------------------|----------------------------------------
                2|`git clone https://github.com/User_Name/Repository_name`| Clone existing repository
 
-           2. Code is stored on a local machine
-         
+
+         2. Code is stored on a local machine
                  Use scp command from terminal to securely copy files over ssh
 
 10. Configure third party authentication.
-
-            Instructions for third party authenticatin are found on the [Readme][11] page of the catalog project.
-            
-            Amazon EC2 Instance's public URL will look something like this: http://ec2-XX-XX-XXX-XXX.us-west-2.compute.amazonaws.com/ where the X's are replaced with your instance's IP address. 
+      * Instructions for third party authenticatin are found on the [Readme][11] page of the catalog project.
+      * Amazon EC2 Instance's public URL will look something like this: http://ec2-XX-XX-XXX-XXX.us-west-2.compute.amazonaws.com/ where the X's are replaced with your instance's IP address. 
 
 ## Additional Functionality
 1. Firewall is configured to monitor for unsuccessful login attempts
