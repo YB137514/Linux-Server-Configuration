@@ -69,10 +69,11 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       * for NTP (port 123)
     
     For time syncronization with NTP on Ubuntu see: [Ubuntu][10]
-    7|sudo apt-get install ntp| To install NTP. Source [Ubuntu][9]
+    
+    7|`sudo apt-get install ntp`| To install NTP. Source [Ubuntu][9]
     ---|-------------------------|----------------------------------------
-    8|sudo /etc/init.d/ntp status| check if the server is running Source[Ubuntu][8]
-    9| sudo ufw allow ntp| Allow NTP, uses default port 123
+    8|`sudo /etc/init.d/ntp status`| check if the server is running Source[Ubuntu][8]
+    9| `sudo ufw allow ntp`| Allow NTP, uses default port 123
     10 |`sudo ufw enable`| To turn firewall on
     11 |`sudo ufw status` |To see all the rules that are engaged
 
@@ -81,106 +82,106 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
 ## Install application
 7. Install and configure Apache to serve a Python mod_wsgi application
 
-`sudo apt-get install apache2`| Install Apache server
-|-------------------------|----------------------------------------
-`sudo apt-get install libapache2-mod-wsgi` |Install application handler - mod_wsgi
+      `sudo apt-get install apache2`| Install Apache server
+      |-------------------------|----------------------------------------
+      `sudo apt-get install libapache2-mod-wsgi` |Install application handler - mod_wsgi
 
 7. Setup Flask directory to serve application
 
-1|`cd /var/www`|Change the directory to www where the main application folder will be located
----|-----------------|---------------------------
-2|`sudo mkdir Catalog`|Make a directory name Catalog
-3|`cd Catalog`|Move into Catalog directory
-4|`sudo apt-get install git`|Install git
-
-If copying application from remote repository such as git:
-5|`sudo git clone https://github.com/XXXXX/XXXXXX.git`| Clone the repository to folder
----|-----------------|---------------------------
-
-If copying application from local computer use `scp` command to copy 
-
-6|`cd Catalog`|Move inside Catalog directory
----|-----------------|---------------------------
-7|`sudo apt-get install python-pip`|Install PIP
-8|`sudo pip install virtualenv` |Install virtual env
-9|`sudo virtualenv virtenv1`|Give the name of your virtual env, let's call it virtenv1
-10|`source virtenv1/bin/activate` |Activate the virtual environment with the following command
-11 |`sudo pip install Flask`|Install Flask inside the virtual environment
-12| `sudo pip install -r requirements.txt`|Install all of the requirements for the application 
-13|`sudo python application.py`|Run the application to see that it is working
-14|`sudo nano /etc/apache2/sites-available/Catalog.conf`|Configure new virtual host by copying the following to the Catalog.conf file
-
-```
-<VirtualHost *:80>
-                ServerName mywebsite.com
-                # Use the public address of virtual server
-                ServerAlias ec2-52-32-222-26.us-west-2.compute.amazonaws.com
-                ServerAdmin admin@mywebsite.com
-                # Configure the root of the application
-                WSGIScriptAlias / /var/www/Catalog/catalog.wsgi
-                # Configure Catalog directory
-                <Directory /var/www/Catalog/Catalog/>
-                        Order allow,deny
-                        Allow from all
-                </Directory>
-                # Configure static directory
-                Alias /static /var/www/Catalog/Catalog/static
-                <Directory /var/www/Catalog/Catalog/static/>
-                        Order allow,deny
-                        Allow from all
-                </Directory>
-                ErrorLog ${APACHE_LOG_DIR}/error.log
-                LogLevel warn
-                CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-
-```
-15|`sudo a2ensite Catalog`|Enable the virtual host with this command. The opposite of this command, i.e. disables the site is sudo a2dissite Catalog
-16|`service apache2 reload`| Reload apache. If this command does not work, try restarting
-17|`sudo nano catalog.wsgi` |Create this file and copy the following:
-
-```
-#!/usr/bin/python
-import sys
-import logging
-logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/Catalog/")
-
-from Catalog import app as application
-application.secret_key = 'Insert a secret Key for your application'
-
-```
-18|`service apache2 restart`| If something does not work try restarting the server
-
-Source: [Digital Ocean][5]
+      1|`cd /var/www`|Change the directory to www where the main application folder will be located
+      ---|-----------------|---------------------------
+      2|`sudo mkdir Catalog`|Make a directory name Catalog
+      3|`cd Catalog`|Move into Catalog directory
+      4|`sudo apt-get install git`|Install git
+      
+      If copying application from remote repository such as git:
+      5|`sudo git clone https://github.com/XXXXX/XXXXXX.git`| Clone the repository to folder
+      ---|-----------------|---------------------------
+      
+      If copying application from local computer use `scp` command to copy 
+      
+      6|`cd Catalog`|Move inside Catalog directory
+      ---|-----------------|---------------------------
+      7|`sudo apt-get install python-pip`|Install PIP
+      8|`sudo pip install virtualenv` |Install virtual env
+      9|`sudo virtualenv virtenv1`|Give the name of your virtual env, let's call it virtenv1
+      10|`source virtenv1/bin/activate` |Activate the virtual environment with the following command
+      11 |`sudo pip install Flask`|Install Flask inside the virtual environment
+      12| `sudo pip install -r requirements.txt`|Install all of the requirements for the application 
+      13|`sudo python application.py`|Run the application to see that it is working
+      14|`sudo nano /etc/apache2/sites-available/Catalog.conf`|Configure new virtual host by copying the following to the Catalog.conf file
+      
+      ```
+      <VirtualHost *:80>
+                      ServerName mywebsite.com
+                      # Use the public address of virtual server
+                      ServerAlias ec2-52-32-222-26.us-west-2.compute.amazonaws.com
+                      ServerAdmin admin@mywebsite.com
+                      # Configure the root of the application
+                      WSGIScriptAlias / /var/www/Catalog/catalog.wsgi
+                      # Configure Catalog directory
+                      <Directory /var/www/Catalog/Catalog/>
+                              Order allow,deny
+                              Allow from all
+                      </Directory>
+                      # Configure static directory
+                      Alias /static /var/www/Catalog/Catalog/static
+                      <Directory /var/www/Catalog/Catalog/static/>
+                              Order allow,deny
+                              Allow from all
+                      </Directory>
+                      ErrorLog ${APACHE_LOG_DIR}/error.log
+                      LogLevel warn
+                      CustomLog ${APACHE_LOG_DIR}/access.log combined
+      </VirtualHost>
+      
+      ```
+      15|`sudo a2ensite Catalog`|Enable the virtual host with this command. The opposite of this command, i.e. disables the site is sudo a2dissite Catalog
+      16|`service apache2 reload`| Reload apache. If this command does not work, try restarting
+      17|`sudo nano catalog.wsgi` |Create this file and copy the following:
+      
+      ```
+      #!/usr/bin/python
+      import sys
+      import logging
+      logging.basicConfig(stream=sys.stderr)
+      sys.path.insert(0,"/var/www/Catalog/")
+      
+      from Catalog import app as application
+      application.secret_key = 'Insert a secret Key for your application'
+      
+      ```
+      18|`service apache2 restart`| If something does not work try restarting the server
+      
+      Source: [Digital Ocean][5]
 
 8. Install and configure PostgreSQL:
 
-1|`sudo apt-get install postgresql`|Install PostgreSQL database
----|-------------------------|----------------------------------------
+      1|`sudo apt-get install postgresql`|Install PostgreSQL database
+      ---|-------------------------|----------------------------------------
 
   1. Do not allow remote connections
 
-By default remote connections are not allowed. See the configuration file:
-`cat /etc/postgresql/9.3/main/pg_hba.conf`
+            By default remote connections are not allowed. See the configuration file:
+            `cat /etc/postgresql/9.3/main/pg_hba.conf`
 
   2. Create a new user named catalog that has limited permissions to your catalog application database
 
-1|`createuser -DRS catalog`|
--D means that the new user will not be allowed to create databases
--R means that the new user will not be allowed to create new roles. 
--S means that  new user will not be a superuser. This is the default.
----|-------------------------|----------------------------------------
-2|`createdb -O grader catalogwithusers`|Create a database `catalogwithusers` which is owned by `grader`: This is created on the command line
-3|`sudo -u postgres bash`|Get a shell for the database superuser 'postgres'.
-4|`psql catalogwithusers`|login to database
-5|`GRANT ALL PRIVILEGES ON DATABASE catalogwithusers TO catalog;`| Grant limited privileges to user
-Optional|`GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO catalog;`|
-Optional|`GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO catalog;`|Source:[stackoverflow][6]
-6|`ALTER USER "catalog" WITH PASSWORD 'Insert password here';`| Give password.  Source:[stackoverflow][7]
-7|`sudo nano /etc/postgresql/9.3/main/pg_hba.conf`| Replace `peer` to `md5` for local not, admin to allow connections with passwords 
-8|`sudo service postgresql restart`| Restart database
-9| Copy project files to a virtual server
+      1|`createuser -DRS catalog`|
+      -D means that the new user will not be allowed to create databases
+      -R means that the new user will not be allowed to create new roles. 
+      -S means that  new user will not be a superuser. This is the default.
+      ---|-------------------------|----------------------------------------
+      2|`createdb -O grader catalogwithusers`|Create a database `catalogwithusers` which is owned by `grader`: This is created on the command line
+      3|`sudo -u postgres bash`|Get a shell for the database superuser 'postgres'.
+      4|`psql catalogwithusers`|login to database
+      5|`GRANT ALL PRIVILEGES ON DATABASE catalogwithusers TO catalog;`| Grant limited privileges to user
+      Optional|`GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO catalog;`|
+      Optional|`GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO catalog;`|Source:[stackoverflow][6]
+      6|`ALTER USER "catalog" WITH PASSWORD 'Insert password here';`| Give password.  Source:[stackoverflow][7]
+      7|`sudo nano /etc/postgresql/9.3/main/pg_hba.conf`| Replace `peer` to `md5` for local not, admin to allow connections with passwords 
+      8|`sudo service postgresql restart`| Restart database
+      9| Copy project files to a virtual server
   1. Code is stored in a remote repository like GitHub
   Install git, clone and set up project if the code is stored in a remote repository like GitHub
 
