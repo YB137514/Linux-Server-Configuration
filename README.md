@@ -237,7 +237,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       ---|-------------------------|----------------------------------------
       2| sudo pip install Glances| install application 
       
-      Sources: [askubuntu][15], [Glances documentation][16]
+      Sources: [askubuntu][16], [Glances documentation][17]
 
 ## A summary of software installed
 
