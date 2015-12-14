@@ -5,8 +5,9 @@ Step by step insructions for Ubuntu 14.04.3 LTS(Trusty Tahr)
 ## Sample application:
 
 URL for application | [http://ec2-52-32-222-26.us-west-2.compute.amazonaws.com/][12]
-
-IP address of the server: 52.32.222.26|SSH Port: 2200
+----------------------|-----------------------------
+IP address of the server | 52.32.222.26
+SSH Port | 2200
 
 ## Perform Basic Linux server configuration
 1. Launch Virtual Machine and log in through the terminal
