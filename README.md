@@ -32,6 +32,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
     `sudo dpkg-reconfigure --frontend noninteractive tzdata`
 
 ## Secure Linux Server 
+
 5. Change the SSH port from 22 to 2200
     Source: [KnownHost Wiki][2]
 
@@ -75,7 +76,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
     10 |`sudo ufw enable`| To turn firewall on
     11 |`sudo ufw status` |To see all the rules that are engaged
 
-Source: [Digital Ocean][3]
+      Source: [Digital Ocean][3]
 
 ## Install application
 7. Install and configure Apache to serve a Python mod_wsgi application
