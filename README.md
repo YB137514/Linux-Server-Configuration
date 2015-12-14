@@ -80,10 +80,11 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       Source: [Digital Ocean][3]
 
 ## Install application
+
 7. Install and configure Apache to serve a Python mod_wsgi application
 
       `sudo apt-get install apache2`| Install Apache server
-      |-------------------------|----------------------------------------
+   |--------------------------------|--------------------
       `sudo apt-get install libapache2-mod-wsgi` |Install application handler - mod_wsgi
 
 7. Setup Flask directory to serve application
@@ -95,13 +96,14 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       4|`sudo apt-get install git`|Install git
       
       If copying application from remote repository such as git:
+   
       5|`sudo git clone https://github.com/XXXXX/XXXXXX.git`| Clone the repository to folder
-      ---|-----------------|---------------------------
+   ----------|-----------------|---------------------------
       
       If copying application from local computer use `scp` command to copy 
       
       6|`cd Catalog`|Move inside Catalog directory
-      ---|-----------------|---------------------------
+   --------|-----------------|---------------------------
       7|`sudo apt-get install python-pip`|Install PIP
       8|`sudo pip install virtualenv` |Install virtual env
       9|`sudo virtualenv virtenv1`|Give the name of your virtual env, let's call it virtenv1
@@ -137,6 +139,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       
       ```
       15|`sudo a2ensite Catalog`|Enable the virtual host with this command. The opposite of this command, i.e. disables the site is sudo a2dissite Catalog
+      ----------|-----------------|---------------------------
       16|`service apache2 reload`| Reload apache. If this command does not work, try restarting
       17|`sudo nano catalog.wsgi` |Create this file and copy the following:
       
@@ -152,6 +155,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       
       ```
       18|`service apache2 restart`| If something does not work try restarting the server
+      ----------|-----------------|---------------------------
       
       Source: [Digital Ocean][5]
 
