@@ -10,71 +10,70 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
 
 ## Perform Basic Linux server configuration
 1. Launch Virtual Machine and log in through the terminal
- Initial log in is done through root on default port
-
+    *  Initial log in is done through root on default port
 
 2. Create a new user named grader and grant this user sudo permissions.
 
-1|`adduser grader` | Add a new user grader
----|---------------- |-----------------------------------------------------------------
-2|`apt-get install finger` | Nice program to check that the user is added sucessfully
-3|`finger grader` | Checks that the new user was created 
+    1|`adduser grader` | Add a new user grader
+    ---|---------------- |-----------------------------------------------------------------
+    2|`apt-get install finger` | Nice program to check that the user is added sucessfully
+    3|`finger grader` | Checks that the new user was created 
 
 3. Update all currently installed packages.
 
-`sudo apt-get update` | Update packaging source list
-----------------------|-----------------------------
-`sudo apt-get upgrade` | To actually upgrade the packages 
+    `sudo apt-get update` | Update packaging source list
+    ----------------------|-----------------------------
+    `sudo apt-get upgrade` | To actually upgrade the packages 
 
 
 4. Configure the local timezone to UTC.
 
-By default Ubuntu timezone is configured to UTC
-`sudo dpkg-reconfigure --frontend noninteractive tzdata`
+    By default Ubuntu timezone is configured to UTC
+    `sudo dpkg-reconfigure --frontend noninteractive tzdata`
 
 ## Secure Linux Server 
 5. Change the SSH port from 22 to 2200
-Source: [KnownHost Wiki][2]
+    Source: [KnownHost Wiki][2]
 
-1|`sudo nano /etc/ssh/sshd_config` | Open the configuration file
----|--------------------------------|---------------------------
-2|`Port 2200` |Change from Port 22 | 
-3|`CTRL+O Enter CTRL+X` | Save and close
-4|`sudo service ssh restart` | Restart the service for the changes to take effect
-5|`ssh -i ~/.ssh/catalog grader@52.32.222.26 -p 2200` |If all is well need to make sure that we are connecting on port 2200 and not on default port 22
-6|`sudo ufw deny 22` | Configure UFW to deny all connections on port 22 
-Source: [Digital Ocean][1]
+    1|`sudo nano /etc/ssh/sshd_config` | Open the configuration file
+    ---|--------------------------------|---------------------------
+    2|`Port 2200` |Change from Port 22 | 
+    3|`CTRL+O Enter CTRL+X` | Save and close
+    4|`sudo service ssh restart` | Restart the service for the changes to take effect
+    5|`ssh -i ~/.ssh/catalog grader@52.32.222.26 -p 2200` |If all is well need to make sure that we are connecting on port 2200 and not on default port 22
+    6|`sudo ufw deny 22` | Configure UFW to deny all connections on port 22 
+    Source: [Digital Ocean][1]
 
 
 
 6. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections:
 
-1 |`sudo ufw status`| To check the status of UFW
----|-----------------|---------------------------
-2 |`sudo ufw default deny incoming`|  Block all incoming request
-3 |`sudo ufw default allow outgoing` | Allow all outgoing
-4 |`sudo ufw status` | Warning: If we turn on the firewall now the server will be dead
-
-
- * for SSH (port 2200)
-
-5 |`sudo ufw allow 2200/tcp` |To change the port from default 22 to 2200
----|-------------------------|----------------------------------------
-
-  * for HTTP (port 80)
-
-6 |`sudo ufw allow www` | To allow HTTP request
----|-------------------------|----------------------------------------
-
-  * for NTP (port 123)
-
-For time syncronization with NTP on Ubuntu see: [Ubuntu][10]
-7|sudo apt-get install ntp| To install NTP. Source [Ubuntu][9]
----|-------------------------|----------------------------------------
-8|sudo /etc/init.d/ntp status| check if the server is running Source[Ubuntu][8]
-9| sudo ufw allow ntp| Allow NTP, uses default port 123
-10 |`sudo ufw enable`| To turn firewall on
-11 |`sudo ufw status` |To see all the rules that are engaged
+    1 |`sudo ufw status`| To check the status of UFW
+    ---|-----------------|---------------------------
+    2 |`sudo ufw default deny incoming`|  Block all incoming request
+    3 |`sudo ufw default allow outgoing` | Allow all outgoing
+    4 |`sudo ufw status` | Warning: If we turn on the firewall now the server will be dead
+    
+    
+     * for SSH (port 2200)
+    
+    5 |`sudo ufw allow 2200/tcp` |To change the port from default 22 to 2200
+    ---|-------------------------|----------------------------------------
+    
+      * for HTTP (port 80)
+    
+    6 |`sudo ufw allow www` | To allow HTTP request
+    ---|-------------------------|----------------------------------------
+    
+      * for NTP (port 123)
+    
+    For time syncronization with NTP on Ubuntu see: [Ubuntu][10]
+    7|sudo apt-get install ntp| To install NTP. Source [Ubuntu][9]
+    ---|-------------------------|----------------------------------------
+    8|sudo /etc/init.d/ntp status| check if the server is running Source[Ubuntu][8]
+    9| sudo ufw allow ntp| Allow NTP, uses default port 123
+    10 |`sudo ufw enable`| To turn firewall on
+    11 |`sudo ufw status` |To see all the rules that are engaged
 
 Source: [Digital Ocean][3]
 
