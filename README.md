@@ -171,11 +171,8 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
 
   2. Create a new user named catalog that has limited permissions to your catalog application database
 
-      1|`createuser -DRS catalog`|
-      -D means that the new user will not be allowed to create databases
-      -R means that the new user will not be allowed to create new roles. 
-      -S means that  new user will not be a superuser. This is the default.
-      ---|-------------------------|----------------------------------------
+      1|`createuser -DRS catalog`|-D means that the new user will not be allowed to create databases, -R means that the new user will not be allowed to create new roles, -S means that  new user will not be a superuser. This is the default.
+   ----------|-------------------------|-----------------------------------------
       2|`createdb -O grader catalogwithusers`|Create a database `catalogwithusers` which is owned by `grader`: This is created on the command line
       3|`sudo -u postgres bash`|Get a shell for the database superuser 'postgres'.
       4|`psql catalogwithusers`|login to database
@@ -186,63 +183,63 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       7|`sudo nano /etc/postgresql/9.3/main/pg_hba.conf`| Replace `peer` to `md5` for local not, admin to allow connections with passwords 
       8|`sudo service postgresql restart`| Restart database
       9| Copy project files to a virtual server
-  1. Code is stored in a remote repository like GitHub
-  Install git, clone and set up project if the code is stored in a remote repository like GitHub
+           1. Code is stored in a remote repository like GitHub
+                 Install git, clone and set up project if the code is stored in a remote repository like GitHub
+               
+               1|`sudo apt-get install git`| Install github
+               ---|-------------------------|----------------------------------------
+               2|`git clone https://github.com/User_Name/Repository_name`| Clone existing repository
 
-1|`sudo apt-get install git`| Install github
----|-------------------------|----------------------------------------
-2|`git clone https://github.com/User_Name/Repository_name`| Clone existing repository
-
-  2. Code is stored on a local machine
-
-  Use scp command from terminal to securely copy files over ssh
+           2. Code is stored on a local machine
+         
+                 Use scp command from terminal to securely copy files over ssh
 
 10. Configure third party authentication.
 
-Instructions for third party authenticatin are found on the [Readme][11] page of the catalog project.
-
-Amazon EC2 Instance's public URL will look something like this: http://ec2-XX-XX-XXX-XXX.us-west-2.compute.amazonaws.com/ where the X's are replaced with your instance's IP address. 
+            Instructions for third party authenticatin are found on the [Readme][11] page of the catalog project.
+            
+            Amazon EC2 Instance's public URL will look something like this: http://ec2-XX-XX-XXX-XXX.us-west-2.compute.amazonaws.com/ where the X's are replaced with your instance's IP address. 
 
 ## Additional Functionality
 1. Firewall is configured to monitor for unsuccessful login attempts
 
-1|`sudo apt-get update`| Update existing packages
----|-------------------------|----------------------------------------
-2|`sudo apt-get install fail2ban`| Downloan `fail2ban'
-3|`sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`| create a copy of default config file
-4|`sudo nano /etc/fail2ban/jail.local`| make the following edits:
- For ssh:
-  `port = 2200`| Replace from default ssh port to 2200
-  |-------------------------|----------------------------------------
- For apache:
-  `enabled  = true`| enable log in protection for apache
-  |-------------------------|----------------------------------------
-
-5|`sudo service fail2ban stop`| Stop the service
----|-------------------------|----------------------------------------
-6|`sudo service fail2ban start`| Restart the service
-
-Source: [Digital Ocean][15]
+      1|`sudo apt-get update`| Update existing packages
+      ---|-------------------------|----------------------------------------
+      2|`sudo apt-get install fail2ban`| Downloan `fail2ban'
+      3|`sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`| create a copy of default config file
+      4|`sudo nano /etc/fail2ban/jail.local`| make the following edits:
+       For ssh:
+        `port = 2200`| Replace from default ssh port to 2200
+        |-------------------------|----------------------------------------
+       For apache:
+        `enabled  = true`| enable log in protection for apache
+        |-------------------------|----------------------------------------
+      
+      5|`sudo service fail2ban stop`| Stop the service
+      ---|-------------------------|----------------------------------------
+      6|`sudo service fail2ban start`| Restart the service
+      
+      Source: [Digital Ocean][15]
 
 2. Automatic Updates
 
-1|`sudo apt-get install unattended-upgrades`| package to automatically install udates
----|-------------------------|----------------------------------------
-2|`sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`| default is that only security updates are downloaded and installed. 
-3|`sudo nano /etc/apt/apt.conf.d/10periodic`| configure the frequency with which updates are downloaded and installed 
-
-Source: [Ubuntu][14]
+      1|`sudo apt-get install unattended-upgrades`| package to automatically install udates
+      ---|-------------------------|----------------------------------------
+      2|`sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`| default is that only security updates are downloaded and installed. 
+      3|`sudo nano /etc/apt/apt.conf.d/10periodic`| configure the frequency with which updates are downloaded and installed 
+      
+      Source: [Ubuntu][14]
 
 3. System Monitoring Tool -- Glances
 
-1|sudo apt-get install python-pip build-essential python-dev| Install requirements
----|-------------------------|----------------------------------------
-2| sudo pip install Glances| install application 
-
-Sources: [askubuntu][15], [Glances documentation][16]
+      1|sudo apt-get install python-pip build-essential python-dev| Install requirements
+      ---|-------------------------|----------------------------------------
+      2| sudo pip install Glances| install application 
+      
+      Sources: [askubuntu][15], [Glances documentation][16]
 
 ## A summary of software installed
-See `system_wide.txt` and app_wide.txt requirements files
+      See `system_wide.txt` and app_wide.txt requirements files
 
 
 
