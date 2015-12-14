@@ -14,7 +14,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
 
 2. Create a new user named grader and grant this user sudo permissions.
 
-    1|`adduser grader` | Add a new user grader
+    1| `adduser grader` |Add a new user grader
     ---|---------------- |-----------------------------------------------------------------
     2|`apt-get install finger` | Nice program to check that the user is added sucessfully
     3|`finger grader` | Checks that the new user was created 
