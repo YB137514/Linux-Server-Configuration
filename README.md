@@ -240,11 +240,8 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       Sources: [askubuntu][15], [Glances documentation][16]
 
 ## A summary of software installed
-      See `system_wide.txt` and app_wide.txt requirements files
 
-
-
-
+See `system_wide.txt` and `app_wide.txt` requirements files
 
 
 
