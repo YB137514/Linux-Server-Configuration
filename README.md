@@ -178,7 +178,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       4|`psql catalogwithusers`|login to database
       5|`GRANT ALL PRIVILEGES ON DATABASE catalogwithusers TO catalog;`| Grant limited privileges to user
       Optional|`GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO catalog;`|
-      Optional|`GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO catalog;`|Source:[stackoverflow][6]
+      Optional|`GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO catalog;`|Source:[stackexchange][6]
       6|`ALTER USER "catalog" WITH PASSWORD 'Insert password here';`| Give password.  Source:[stackoverflow][7]
       7|`sudo nano /etc/postgresql/9.3/main/pg_hba.conf`| Replace `peer` to `md5` for local not, admin to allow connections with passwords 
       8|`sudo service postgresql restart`| Restart database
