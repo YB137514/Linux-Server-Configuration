@@ -185,7 +185,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       9| Copy project files to a virtual server
       
          1. Code is stored in a remote repository like GitHub
-               * Install git, clone and set up project if the code is stored in a remote repository like GitHub
+            * Install git, clone and set up project if the code is stored in a remote repository like GitHub
                
                1|`sudo apt-get install git`| Install github
          -------|-----------------------|----------------------------------------
@@ -193,7 +193,7 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
 
 
          2. Code is stored on a local machine
-                 Use scp command from terminal to securely copy files over ssh
+            * Use scp command from terminal to securely copy files over ssh
 
 10. Configure third party authentication.
       * Instructions for third party authenticatin are found on the [Readme][11] page of the catalog project.
@@ -208,11 +208,13 @@ IP address of the server: 52.32.222.26|SSH Port: 2200
       3|`sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`| create a copy of default config file
       4|`sudo nano /etc/fail2ban/jail.local`| make the following edits:
        For ssh:
+       
         `port = 2200`| Replace from default ssh port to 2200
-        |-------------------------|----------------------------------------
+        ---------------------|----------------------------------------
        For apache:
+       
         `enabled  = true`| enable log in protection for apache
-        |-------------------------|----------------------------------------
+        --------------------|----------------------------------------
       
       5|`sudo service fail2ban stop`| Stop the service
       ---|-------------------------|----------------------------------------
