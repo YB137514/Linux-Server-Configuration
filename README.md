@@ -6,7 +6,7 @@ Step by step insructions for Ubuntu 14.04.3 LTS(Trusty Tahr)
 
 URL for application | [link][12]
 ----------------------|-----------------------------
-IP address of the server | 52.32.222.26
+IP address of the server | 
 SSH Port | 2200
 
 ## Perform Basic Linux server configuration
