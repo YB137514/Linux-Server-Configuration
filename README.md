@@ -4,7 +4,7 @@ Step by step insructions for Ubuntu 14.04.3 LTS(Trusty Tahr)
 
 ## Sample application:
 
-URL for application | [http://ec2-52-32-222-26.us-west-2.compute.amazonaws.com/][12]
+URL for application | [link][12]
 ----------------------|-----------------------------
 IP address of the server | 52.32.222.26
 SSH Port | 2200
@@ -257,7 +257,7 @@ See `system_wide.txt` and `app_wide.txt` requirements files
 [9]:https://help.ubuntu.com/lts/serverguide/NTP.html
 [10]: https://help.ubuntu.com/lts/serverguide/NTP.html#ntp-status
 [11]: https://github.com/YB137514/Catalog-App/#quick-start
-[12]: http://ec2-52-32-222-26.us-west-2.compute.amazonaws.com/
+[12]: http://107.178.223.130/
 [13]: https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04
 [14]:https://help.ubuntu.com/lts/serverguide/automatic-updates.html#update-notifications
 [15]:https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04
